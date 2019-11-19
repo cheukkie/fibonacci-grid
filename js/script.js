@@ -8,7 +8,7 @@ import {
 // SETUP
 const gridRows = 50;
 const gridCols = 50;
-const checkSliceSize = 5;
+const theSliceSize = 5;
 const gridContainer = document.querySelector('#grid');
 
 
@@ -89,67 +89,60 @@ function clickCell(clickedCell) {
         addOne(cell);
     });
     const testRows = convertToArray(getRowCells(rowId));
-    checkArraySlices(testRows, checkSliceSize);
+    checkArraySlices(testRows, theSliceSize);
 }
 
 
 function fiboInit() {
     const t = document.createElement('TABLE');
 
-    for (let rows = 0; rows < gridRows; rows++) {
+    [...Array(gridRows).keys()].map(rowIndex => {
         const newRow = document.createElement('tr');
-        newRow.setAttribute('data-row', rows);
+        newRow.setAttribute('data-row', rowIndex);
         t.appendChild(newRow);
-        for (let cols = 0; cols < gridCols; cols++) {
+        [...Array(gridCols).keys()].map(colIndex => {
             const newCell = document.createElement('td');
 
             newCell.classList.add('is-empty');
-            newCell.setAttribute('data-column', cols);
-            newCell.setAttribute('data-row', rows);
+            newCell.setAttribute('data-column', colIndex);
+            newCell.setAttribute('data-row', rowIndex);
             newCell.setAttribute('data-num', 0);
             newCell.addEventListener('click', clickCell);
             newCell.addEventListener('mouseover', highlightColumn);
             newCell.addEventListener('mouseleave', resetColumns);
 
             newRow.appendChild(newCell);
-        }
-    }
+        });
+    });
     gridContainer.appendChild(t);
 }
 fiboInit();
 
-
-// TODO: TEST FUNCTION
 // POPULATE GRID WITH (HIDDEN) FIBO SEQS
 function addFiboToGrid(x) {
     const fiboSeq = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811];
 
-    let iterations = x || 1;
-    
-    const startFibo = getRandomInt(0, (fiboSeq.length - 1) - checkSliceSize); // Last 2 numbers are not usable
-    
-    // get random position in grid
-    const row = getRandomInt(0, gridRows - 1);
-    const column = getRandomInt(0, gridCols - 1);
-    const randomCell = document.querySelector(`td[data-column="${column}"][data-row="${row}"]`);
-
-    randomCell.setAttribute('data-num', fiboSeq[startFibo] - 1);
-    randomCell.innerText = fiboSeq[startFibo] - 1;
-
-    const randomCell1 = document.querySelector(`td[data-column="${column + 1}"][data-row="${row}"]`);
-    randomCell1.setAttribute('data-num', fiboSeq[startFibo + 1] - 1);
-    randomCell1.innerText = fiboSeq[startFibo + 1] - 1;
-
-    const randomCell2 = document.querySelector(`td[data-column="${column + 2}"][data-row="${row}"]`);
-    randomCell2.setAttribute('data-num', fiboSeq[startFibo + 2] - 1);
-    randomCell2.innerText = fiboSeq[startFibo + 2] - 1;
-
-    const randomCell3 = document.querySelector(`td[data-column="${column + 3}"][data-row="${row}"]`);
-    randomCell3.setAttribute('data-num', fiboSeq[startFibo + 3] - 1);
-    randomCell3.innerText = fiboSeq[startFibo + 3] - 1;
-
-    const randomCell4 = document.querySelector(`td[data-column="${column + 4}"][data-row="${row}"]`);
-    randomCell4.setAttribute('data-num', fiboSeq[startFibo + 4] - 1);
-    randomCell4.innerText = fiboSeq[startFibo + 4] - 1;
+    const iterations = x || 1;
+    [...Array(iterations).keys()].map(i => {
+        // get random position in grid
+        const row = getRandomInt(0, (gridRows - 1) - theSliceSize); // Last 5 numbers are not usable
+        const column = getRandomInt(0, (gridCols - 1) - theSliceSize);
+        const startFibo = getRandomInt(0, (fiboSeq.length - 1) - theSliceSize);
+        const flipCoin = getRandomInt(0, 2);
+        [...Array(theSliceSize).keys()].map(n => {
+            let randomCell;
+            if (flipCoin === 0) {
+                // row
+                randomCell = document.querySelector(`td[data-column="${column + n}"][data-row="${row}"]`);
+                randomCell.setAttribute('data-num', fiboSeq[startFibo + n] - 1);
+                randomCell.innerText = fiboSeq[startFibo + n] - 1;
+            } else {
+                // column
+                randomCell = document.querySelector(`td[data-column="${column}"][data-row="${row + n}"]`);
+                randomCell.setAttribute('data-num', fiboSeq[startFibo + n] - 1);
+                randomCell.innerText = fiboSeq[startFibo + n] - 1;
+            }
+        });
+    });
 }
-addFiboToGrid();
+addFiboToGrid(10);
