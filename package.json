@@ -1,0 +1,31 @@
+{
+  "name": "fibonacci-grid",
+  "version": "1.0.0",
+  "description": "A simple grid.",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass scss/style.scss -o css",
+    "css:watch": "npm run css && node-sass scss/style.scss -wo css",
+
+    "lint": "eslint ./js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheukkie/fibonacci-grid.git"
+  },
+  "author": "Cheuk-Ming Tang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheukkie/fibonacci-grid/issues"
+  },
+  "homepage": "https://github.com/cheukkie/fibonacci-grid#readme",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "node-sass": "^4.13.0",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {}
+}

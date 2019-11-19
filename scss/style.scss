@@ -1,0 +1,96 @@
+$fontMain:'IBM Plex Mono', monospace;
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    min-height: 100vh;
+    padding: 15px;
+
+    font-family: $fontMain;
+    font-size: 14px;
+    text-align: center;
+}
+header{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+
+    h1{
+        font-size: 14px;
+        margin: 0 0 10px 0;
+    }
+    p{
+        margin: 0;
+    }
+}
+
+main{
+    flex: 2;
+}
+
+.container{
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+}
+
+table{
+    margin: auto;
+    height: auto;
+    font-size: 8px;
+    border-spacing: 0;
+    border: 1px solid black;
+    
+    tr {
+        td {
+            background-color: #ffffff;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            border-bottom: solid 1px black;
+            border-right: solid 1px black;
+            transition: all .5s ease-in-out;
+            cursor: pointer;
+
+            &[data-num="0"]:before{
+                content:"0";
+                color: transparent;
+            }
+
+            &.is-clicked{
+                background-color: yellow !important;
+            }
+            &.is-fibo{
+                background-color: green !important;
+            }
+            &.is-empty{
+                background-color: #e8e8e8;   
+            }
+        }
+
+        &:last-child td{
+            border-bottom: none;
+        }
+        & td:last-child{
+            border-right: none;
+        }
+    }
+}
+
+
+
+
