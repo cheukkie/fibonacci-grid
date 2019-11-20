@@ -7,4 +7,4 @@ It's a 50x50 grid with the following rules:
 
 ## Play here
 
-http://cheuk.online/lab/fibonacci-grid
+<a href="http://cheuk.online/lab/fibonacci-grid" target="_blank">http://cheuk.online/lab/fibonacci-grid</a>
