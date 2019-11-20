@@ -10,5 +10,6 @@ export function convertToArray(query) {
 export function getRandomInt(minimum, maximum) {
     const min = Math.ceil(minimum);
     const max = Math.floor(maximum);
-    return Math.floor(Math.random() * (max - min)) + min; // The max is exclusive and the min is inclusive
+    // The max is exclusive and the min is inclusive
+    return Math.floor(Math.random() * (max - min)) + min;
 }

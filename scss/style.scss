@@ -38,9 +38,24 @@ header{
     }
 }
 #toggle-options{
+    position: relative;
     .show{ display: block }
     .hide{ display: none; }
     &.is-visible{
+        &:after{
+            content:"";
+            display: block;
+            position: absolute;
+            width: 0;
+            height:0;
+            left: 0;
+            right: 0;
+            top: 100%;
+            margin: 5px auto auto auto;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #f1f1f1;
+        }
         .hide{ display: block }
         .show{ display: none; }
     }
@@ -50,6 +65,11 @@ header{
     justify-content: space-around;
     align-content: center;
     padding: 10px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    div{
+        padding: 0 5px;
+    }
     &.is-visible{
         display:flex;
     }
