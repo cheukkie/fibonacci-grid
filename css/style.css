@@ -16,21 +16,44 @@ body {
   min-height: 100vh;
   padding: 15px;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 14px;
-  text-align: center; }
+  font-size: 14px; }
 
 header {
   display: flex;
   justify-content: space-around;
-  align-content: center; }
+  align-content: center;
+  padding: 10px; }
   header h1 {
     font-size: 14px;
     margin: 0 0 10px 0; }
   header p {
     margin: 0; }
 
+#toggle-options .show {
+  display: block; }
+
+#toggle-options .hide {
+  display: none; }
+
+#toggle-options.is-visible .hide {
+  display: block; }
+
+#toggle-options.is-visible .show {
+  display: none; }
+
+#options {
+  display: none;
+  justify-content: space-around;
+  align-content: center;
+  padding: 10px; }
+  #options.is-visible {
+    display: flex; }
+
 main {
   flex: 2; }
+
+footer {
+  text-align: center; }
 
 .container {
   width: 100%;
@@ -44,6 +67,7 @@ table {
   border-spacing: 0;
   border: 1px solid black; }
   table tr td {
+    position: relative;
     background-color: #ffffff;
     width: 20px;
     height: 20px;
@@ -58,9 +82,19 @@ table {
     table tr td.is-clicked {
       background-color: yellow !important; }
     table tr td.is-fibo {
-      background-color: green !important; }
+      background-color: #1ff21f !important; }
     table tr td.is-empty {
       background-color: #e8e8e8; }
+    table tr td.is-hover:not(.is-clicked):after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.5); }
+    table tr td.is-hover:not(.is-clicked).is-filled:after {
+      color: blue; }
   table tr:last-child td {
     border-bottom: none; }
   table tr td:last-child {

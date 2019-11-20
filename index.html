@@ -14,11 +14,37 @@
 <body>
     <header>
         <h1>Fibonacci Grid (?)</h1>
-        <p>
-            See more at <a href="http://cheuk.online" target="_blank">Cheuk.online</a>
-        </p>    
+        <p>Fibonacci's found: <span id="fibo-counter">0</span></p>
+        <button id="toggle-options">
+            <span class="show">Show options</span>
+            <span class="hide">Hide options</span>
+        </button>
     </header>
+    <div id="options">
+        <div>
+            <button id="reset-grid">Clear grid</button>
+            <button id="add-random-fibo">Add random fibo sequences</button>
+        </div>
+        <div>
+            <div>
+                <div id="row-counter">
+                    <label>Rows: (<span>0</span>)</label>
+                    <input type="range" steps="1" value="50" min="10" max="50">
+                </div>
+                <div id="col-counter">
+                    <label>Columns (<span>0</span>)</label>
+                    <input type="range" steps="1" value="50" min="10" max="50">
+                </div>
+                <button id="change-grid">Make grid</button>
+            </div>
+        </div>
+    </div>
     <main id="grid"></main>
+    <footer>
+        <p>
+            <small>See more at <a href="http://cheuk.online" target="_blank">Cheuk.online</a></small>
+        </p>
+    </footer>
     <script async src="js/script.js" type="module"></script>
 </body>
 </html>
